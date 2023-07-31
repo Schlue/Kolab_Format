@@ -28,11 +28,11 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_Unit_Xml_EnvelopeTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testSave()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<uid>test</uid>',
             $this->_getEnvelope()->save(
                 array('uid' => 'test', 'type' => 'test')
@@ -40,12 +40,10 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testMissingType()
     {
-        $this->assertContains(
+        $this->expectException('Horde_Kolab_Format_Exception');
+        $this->assertStringContainsString(
             '<uid>test</uid>',
             $this->_getEnvelope()->save(array('uid' => 'test'))
         );
@@ -53,7 +51,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testType()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<test version="1.0">',
             $this->_getEnvelope()->save(
                 array('uid' => 'test', 'type' => 'test')
@@ -63,7 +61,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testXml()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<testelement/>',
             $this->_getEnvelope()->save(
                 array('uid' => 'test', 'type' => 'test', 'xml' => '<testelement/>')

@@ -32,6 +32,7 @@ extends Horde_Kolab_Format_TestCase
 {
     public function testConstructor()
     {
+        $this->expectNotToPerformAssertions();
         $this->getFactory()->create(
             'XML', 'contact', array('timelog' => true)
         );
@@ -42,8 +43,7 @@ extends Horde_Kolab_Format_TestCase
         $timed = $this->_getTimedMock();
         $a = '';
         $timed->load($a);
-        $this->assertInternalType(
-            'float',
+        $this->assertIsFloat(
             $timed->timeSpent()
         );
     }
@@ -65,7 +65,7 @@ extends Horde_Kolab_Format_TestCase
         $timed = $this->_getTimedMock();
         $a = '';
         $timed->load($a);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Kolab Format data parsing complete. Time spent:',
             array_pop($this->logger->log)
         );
@@ -76,7 +76,7 @@ extends Horde_Kolab_Format_TestCase
         $timed = $this->_getTimedMock();
         $a = array();
         $timed->save($a);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Kolab Format data generation complete. Time spent:',
             array_pop($this->logger->log)
         );
@@ -84,8 +84,10 @@ extends Horde_Kolab_Format_TestCase
 
     public function testNoLog()
     {
+        $this->expectNotToPerformAssertions();
         $timed = new Horde_Kolab_Format_Decorator_Timed(
-            $this->getMock('Horde_Kolab_Format'),
+            $this->getMockBuilder('Horde_Kolab_Format')
+                 ->getMock(),
             new Horde_Support_Timer(),
             true
         );
@@ -97,7 +99,8 @@ extends Horde_Kolab_Format_TestCase
     {
         $this->logger = new Horde_Kolab_Format_Stub_Log();
         return new Horde_Kolab_Format_Decorator_Timed(
-            $this->getMock('Horde_Kolab_Format'),
+            $this->getMockBuilder('Horde_Kolab_Format')
+                 ->getMock(),
             new Horde_Support_Timer(),
             $this->logger
         );

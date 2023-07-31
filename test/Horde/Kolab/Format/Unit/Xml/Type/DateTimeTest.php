@@ -30,7 +30,7 @@
 class Horde_Kolab_Format_Unit_Xml_Type_DateTimeTest
 extends Horde_Kolab_Format_TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         date_default_timezone_set('Europe/Berlin');
     }
@@ -68,11 +68,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadEmptyDateTime()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"><datetime></datetime></kolab>'
@@ -96,11 +94,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertInstanceOf('DateTime', $attributes['datetime']['date']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->loadWithClass('Horde_Kolab_Format_Stub_DateTimeNotEmpty');
     }
 
@@ -176,11 +172,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->saveWithClass('Horde_Kolab_Format_Stub_DateTimeNotEmpty');
     }
 

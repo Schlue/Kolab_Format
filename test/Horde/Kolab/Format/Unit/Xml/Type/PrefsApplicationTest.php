@@ -60,11 +60,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('STRANGE', $attributes['application']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadEmptyApplication()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"><application></application></kolab>',
@@ -72,11 +70,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadMissingApplication()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',
@@ -84,11 +80,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',
@@ -150,11 +144,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',

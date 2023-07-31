@@ -72,11 +72,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals(array('X'), $attributes['string']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $params = array();
         list($helper, $root_node, $type) = $this->getXmlType(
             'Horde_Kolab_Format_Stub_MultipleNotEmpty',
@@ -161,11 +159,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $params = array();
         list($helper, $root_node, $type) = $this->getXmlType(
             'Horde_Kolab_Format_Stub_MultipleNotEmpty'
@@ -175,11 +171,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testSaveInvalidMultiple()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $params = array('relaxed' => false);
         list($helper, $root_node, $type) = $this->getXmlType(
             'Horde_Kolab_Format_Xml_Type_Multiple_Boolean'

@@ -39,11 +39,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertSame(1, $attributes['integer']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadStrangeInteger()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><integer type="strange"><b/>false<a/></integer>c</kolab>'
@@ -67,11 +65,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertSame(10, $attributes['integer']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->loadWithClass('Horde_Kolab_Format_Stub_IntegerNotEmpty');
     }
 
@@ -123,19 +119,15 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->saveWithClass('Horde_Kolab_Format_Stub_IntegerNotEmpty');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testSaveInvalidInteger()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $this->saveWithClass(
             'Horde_Kolab_Format_Stub_IntegerNotEmpty',
             null,

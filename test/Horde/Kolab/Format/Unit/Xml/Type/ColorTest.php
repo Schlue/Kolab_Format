@@ -75,11 +75,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('#abcdef', $attributes['color']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadInvalid()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"><color>#09aFAfD</color>c</kolab>',
@@ -141,11 +139,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         list($helper, $root_node, $type) = $this->getXmlType(
             'Horde_Kolab_Format_Stub_ColorNotEmpty',
             '<?xml version="1.0" encoding="UTF-8"?>
@@ -158,11 +154,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testSaveInvalidColor()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',

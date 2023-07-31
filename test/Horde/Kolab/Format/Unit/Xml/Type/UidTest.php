@@ -49,22 +49,18 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('STRANGE', $attributes['uid']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingUid
-     */
     public function testLoadMissingUidText()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingUid');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><uid></uid>c</kolab>'
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingUid
-     */
     public function testLoadMissingUid()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingUid');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b">c</kolab>'
@@ -105,11 +101,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingUid
-     */
     public function testSaveMissingData()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingUid');
         $this->saveToXml();
     }
 
@@ -155,11 +149,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testOverwriteOldUid()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><uid>OLD</uid>c</kolab>',

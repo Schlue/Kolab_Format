@@ -60,11 +60,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals(array('X' => 'Y'), $attributes['composite']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',
@@ -152,11 +150,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0"/>',

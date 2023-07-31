@@ -28,13 +28,11 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_Unit_XmlTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingUid
-     */
     public function testMissingUid()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingUid');
         $factory = new Horde_Kolab_Format_Factory();
         $note = $factory->create('Xml', 'Note');
         $note->save(array());
@@ -44,7 +42,7 @@ extends PHPUnit_Framework_TestCase
     {
         $factory = new Horde_Kolab_Format_Factory();
         $note = $factory->create('Xml', 'Note');
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<note version="1.0">',
             $note->save(array('uid' => 'test'))
         );

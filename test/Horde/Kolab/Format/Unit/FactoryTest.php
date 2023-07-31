@@ -28,7 +28,7 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_Unit_FactoryTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testFactory()
     {
@@ -84,20 +84,16 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testFactoryException()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $factory = new Horde_Kolab_Format_Factory();
         $factory->create('UNKNOWN', 'contact');
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testUnknownFormatException()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $factory = new Horde_Kolab_Format_Factory();
         $factory->create('Exception', 'InvalidRoot');
     }
@@ -183,11 +179,9 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testTypeMissing()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $factory = new Horde_Kolab_Format_Factory();
         $factory->createXmlType('Horde_Kolab_Format_Stub_Types_NOSUCH');
     }

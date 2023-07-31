@@ -32,6 +32,7 @@ extends Horde_Kolab_Format_TestCase
 {
     public function testConstructor()
     {
+        $this->expectNotToPerformAssertions();
         $this->getFactory()->create(
             'XML', 'contact', array('memlog' => true)
         );
@@ -42,7 +43,7 @@ extends Horde_Kolab_Format_TestCase
         $timed = $this->_getMemoryMock();
         $a = '';
         $timed->load($a);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Kolab Format data parsing complete. Memory usage:',
             array_pop($this->logger->log)
         );
@@ -53,7 +54,7 @@ extends Horde_Kolab_Format_TestCase
         $timed = $this->_getMemoryMock();
         $a = array();
         $timed->save($a);
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Kolab Format data generation complete. Memory usage:',
             array_pop($this->logger->log)
         );
@@ -63,7 +64,8 @@ extends Horde_Kolab_Format_TestCase
     {
         $this->logger = new Horde_Kolab_Format_Stub_Log();
         return new Horde_Kolab_Format_Decorator_Memory(
-            $this->getMock('Horde_Kolab_Format'),
+            $this->getMockBuilder('Horde_Kolab_Format')
+                 ->getMock(),
             new Horde_Support_Memory(),
             $this->logger
         );

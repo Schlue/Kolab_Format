@@ -30,11 +30,9 @@
 class Horde_Kolab_Format_Unit_Xml_Type_RecurrenceTest
 extends Horde_Kolab_Format_TestCase
 {
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testEmptyInterval()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><recurrence>TEST</recurrence>c</kolab>'
@@ -42,11 +40,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals(array(), $attributes['recurrence']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testIntervalBelowZero()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><recurrence><interval>-1</interval>TEST</recurrence>c</kolab>'
@@ -54,22 +50,18 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals(array(), $attributes['recurrence']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testMissingCycle()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><recurrence><interval>2</interval>TEST</recurrence>c</kolab>'
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testMissingWeekday()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><recurrence cycle="weekly"><interval>1</interval>TEST</recurrence>c</kolab>'

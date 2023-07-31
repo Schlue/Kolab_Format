@@ -32,7 +32,7 @@ extends Horde_Kolab_Format_TestCase
 {
     public function testBasic()
     {
-        $this->assertContains(
+        $this->assertStringContainsStringIgnoringCase(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0">
   <body></body>

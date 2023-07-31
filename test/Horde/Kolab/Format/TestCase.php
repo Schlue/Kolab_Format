@@ -24,7 +24,7 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_TestCase
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     private $_factory;
 

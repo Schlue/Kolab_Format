@@ -28,15 +28,15 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_Unit_DateTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->_oldTimezone = date_default_timezone_get();
         date_default_timezone_set('Europe/Berlin');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         date_default_timezone_set($this->_oldTimezone);
     }

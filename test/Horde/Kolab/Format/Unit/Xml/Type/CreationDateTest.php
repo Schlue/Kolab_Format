@@ -53,11 +53,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testLoadInvalidCreationDateValue()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><creation-date>2011A-06-28T08:42:11Z</creation-date>c</kolab>',
@@ -135,11 +133,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception
-     */
     public function testSaveFailsOverwritingOldValue()
     {
+        $this->expectException('Horde_Kolab_Format_Exception');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="1.0" a="b"><creation-date type="strange"><b/>1970-01-01T00:00:00Z<a/></creation-date>c</kolab>',

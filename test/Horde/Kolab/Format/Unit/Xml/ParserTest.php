@@ -28,7 +28,7 @@
  * @link       http://www.horde.org/libraries/Horde_Kolab_Format
  */
 class Horde_Kolab_Format_Unit_Xml_ParserTest
-extends PHPUnit_Framework_TestCase
+extends Horde_Test_Case
 {
     public function testParseString()
     {
@@ -41,11 +41,9 @@ extends PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testParseMissingChild()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $parser = new Horde_Kolab_Format_Xml_Parser(
             new DOMDocument('1.0', 'UTF-8')
         );
@@ -82,11 +80,9 @@ extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('DOMDocument', $parser->parse($data));
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testParseUmlautWrongEncoding()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $data = fopen('php://temp', 'r+');
         fwrite($data, "<?xml version=\"1.0\" encoding=\"windows-1252\"?>\n<kolab><ä/></kolab>");
         $parser = new Horde_Kolab_Format_Xml_Parser(
@@ -95,11 +91,9 @@ extends PHPUnit_Framework_TestCase
         $parser->parse($data);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_ParseError
-     */
     public function testSecondParseAttemptBroken()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_ParseError');
         $parser = new Horde_Kolab_Format_Xml_Parser(
             new DOMDocument('1.0', 'UTF-8')
         );

@@ -72,11 +72,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('DEFAULT', $attributes['string']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testLoadNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->loadWithClass('Horde_Kolab_Format_Stub_StringNotEmpty');
     }
 
@@ -130,11 +128,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_MissingValue
-     */
     public function testSaveNotEmpty()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_MissingValue');
         $this->saveWithClass('Horde_Kolab_Format_Stub_StringNotEmpty');
     }
 

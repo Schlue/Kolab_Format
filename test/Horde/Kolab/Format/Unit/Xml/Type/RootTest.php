@@ -39,11 +39,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('A', $attributes['uid']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_InvalidRoot
-     */
     public function testMissingRootNode()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_InvalidRoot');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?><test/>'
         );
@@ -68,11 +66,9 @@ extends Horde_Kolab_Format_TestCase
         $this->assertEquals('1', $attributes['_api-version']);
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_InvalidRoot
-     */
     public function testLoadHigherVersion()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_InvalidRoot');
         $attributes = $this->load(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="2.0" a="b">c</kolab>'
@@ -139,11 +135,9 @@ extends Horde_Kolab_Format_TestCase
         );
     }
 
-    /**
-     * @expectedException Horde_Kolab_Format_Exception_InvalidRoot
-     */
     public function testOverwriteHigherVersion()
     {
+        $this->expectException('Horde_Kolab_Format_Exception_InvalidRoot');
         $this->saveToXml(
             '<?xml version="1.0" encoding="UTF-8"?>
 <kolab version="2.0" a="b">c</kolab>',
