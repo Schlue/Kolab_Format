@@ -46,7 +46,7 @@ extends Horde_Kolab_Format_Xml_Type_String
     )
     {
         $result = $helper->fetchNodeValue($node);
-        if (strlen($result) == 10) {
+        if (strlen(is_null($result) ? "" : $result ) == 10) {
             $date = array(
                 'date' => Horde_Kolab_Format_Date::readDate($result),
                 'date-only' => true

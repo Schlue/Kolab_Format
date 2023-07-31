@@ -104,7 +104,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSaveCreatesNewNode()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<kolab version="1.0"><uid>A</uid><body></body><categories></categories>#',
             $this->saveToXml(null, array('uid' => 'A'))
         );
@@ -112,7 +112,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSaveDoesNotTouchExistingNode()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<kolab version="1.0" a="b">#',
             $this->saveToXml(
                 '<?xml version="1.0" encoding="UTF-8"?>
@@ -124,7 +124,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testAddNewType()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<old version="1.0" a="b">c</old>
 <kolab version="1.0"#',
             $this->saveToXml(
@@ -147,7 +147,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testOverwriteHigherVersionRelaxed()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<kolab version="1.0"#',
             $this->saveToXml(
                 '<?xml version="1.0" encoding="UTF-8"?>
@@ -160,7 +160,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSetHigherVersion()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<kolab version="2.0" a="b"#',
             $this->saveToXml(
                 '<?xml version="1.0" encoding="UTF-8"?>
@@ -173,7 +173,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSaveNewVersion()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<kolab version="2.0"#',
             $this->saveToXml(
                 null,

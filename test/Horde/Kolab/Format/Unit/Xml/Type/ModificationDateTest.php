@@ -83,7 +83,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSaveXml()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<modification-date>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z</modification-date>#',
             $this->saveToXml(
                 null,
@@ -95,7 +95,7 @@ extends Horde_Kolab_Format_TestCase
 
     public function testSaveOverwritesOldValue()
     {
-        $this->assertRegexp(
+        $this->assertMatchesRegularExpression(
             '#<modification-date type="strange">\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z<b/><a/></modification-date>#',
             $this->saveToXml(
                 '<?xml version="1.0" encoding="UTF-8"?>

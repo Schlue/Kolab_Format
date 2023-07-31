@@ -111,7 +111,7 @@ class Horde_Kolab_Format_Xml_Parser
      */
     private function _parseXml($input, $options = array())
     {
-        $result = @$this->_document->loadXML($input);
+        $result = @$this->_document->loadXML(($input === "") ? "<xml></xml>" : $input);
         if (!empty($options['relaxed'])) {
             return $this->_document;
         }
